@@ -1,0 +1,48 @@
+function sudokuChecker ( puzzle ){
+  for ( a = 0 ; a < puzzle.length ; a ++ ){
+    for (b = 0 ; b < puzzle[a].length ; b++){
+      if ( puzzle[a].indexOf(b+1) > -1 ){
+      // console.log ( ' good rows ' );
+      }else{
+      return ' row ' + (a+1) + ' is wrong ' + false ;
+      }
+    }
+  }
+  
+  let columnArray = [[],[],[],[],[],[],[],[],[]];
+  for ( c = 0 ; c < puzzle.length ; c++){
+    for ( d = 0 ; d < puzzle[c].length ; d++){
+      columnArray[c].push(puzzle[d][c]); 
+    }
+  }
+  for (e = 0 ; e < columnArray.length; e++){
+    for (f = 0 ; f < columnArray[e].length ; f++){
+      if ( columnArray[e].indexOf(f+1) > -1 ){
+      // console.log ( ' good columns ')
+      }else{
+      return ' column ' + (e+1) + ' is wrong ' + false;
+      }
+    }
+  }
+        
+  let  sectionArray = [[],[],[],[],[],[],[],[],[]];
+  for ( x= 0 ; x < 3 ; x++){
+    for ( y = 0 ; y < 3 ; y++){
+      for ( i = x*3 ; i < x*3+3 ; i++){
+        for ( j = y*3 ; j < y*3+3 ; j++){
+          sectionArray[(x*3)+y].push(puzzle[i][j]);
+        }
+      }
+    }
+  }
+  for (g = 0 ; g < sectionArray.length; g++){
+    for ( h = 0 ; h < sectionArray[g].length ; h++){
+      if ( sectionArray[g].indexOf(h+1) > -1 ){
+      // console.log ( ' good sections ');
+      }else{
+      return ' section ' + (g+1) + ' is wrong ' + false;
+      }
+    }
+  }
+  return true;
+}
